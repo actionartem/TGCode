@@ -12,19 +12,65 @@ export function Contact() {
   const { ref, isInView } = useInView({ threshold: 0.1 });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    telegram: "",
+    phone: "",
+    message: "",
+  });
+
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = event.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    // Reset after 3 seconds
-    setTimeout(() => setIsSubmitted(false), 3000);
+    setErrorMessage("");
+
+    try {
+      const response = await fetch("https://ibn-lab.ru/send-notification-2", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          telegram: formData.telegram,
+          description: formData.message,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Request failed");
+      }
+
+      setIsSubmitted(true);
+      setFormData({
+        name: "",
+        email: "",
+        telegram: "",
+        phone: "",
+        message: "",
+      });
+      setTimeout(() => setIsSubmitted(false), 3000);
+    } catch (error) {
+      setErrorMessage(
+        "Не удалось отправить сообщение. Попробуйте еще раз чуть позже."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -59,6 +105,8 @@ export function Contact() {
                   id="name"
                   name="name"
                   placeholder={t.contact.form.namePlaceholder}
+                  value={formData.name}
+                  onChange={handleChange}
                   className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all text-foreground placeholder:text-muted-foreground"
                 />
               </div>
@@ -74,6 +122,8 @@ export function Contact() {
                   id="email"
                   name="email"
                   placeholder={t.contact.form.emailPlaceholder}
+                  value={formData.email}
+                  onChange={handleChange}
                   className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all text-foreground placeholder:text-muted-foreground"
                 />
               </div>
@@ -89,6 +139,8 @@ export function Contact() {
                   id="telegram"
                   name="telegram"
                   placeholder={t.contact.form.telegramPlaceholder}
+                  value={formData.telegram}
+                  onChange={handleChange}
                   className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all text-foreground placeholder:text-muted-foreground"
                 />
               </div>
@@ -104,6 +156,8 @@ export function Contact() {
                   id="phone"
                   name="phone"
                   placeholder={t.contact.form.phonePlaceholder}
+                  value={formData.phone}
+                  onChange={handleChange}
                   className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all text-foreground placeholder:text-muted-foreground"
                 />
               </div>
@@ -121,9 +175,17 @@ export function Contact() {
                 name="message"
                 rows={4}
                 placeholder={t.contact.form.messagePlaceholder}
+                value={formData.message}
+                onChange={handleChange}
                 className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all text-foreground placeholder:text-muted-foreground resize-none"
               />
             </div>
+
+            {errorMessage ? (
+              <p className="text-center text-sm text-red-400">
+                {errorMessage}
+              </p>
+            ) : null}
 
             <div className="flex justify-center">
               <button
