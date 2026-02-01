@@ -10,7 +10,10 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "TGCode",
   description:
-    "We create websites and products you want to touch. Animations, interactivity, clean code.",
+    "Digital агентство по разработке любых продуктов",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export const viewport: Viewport = {
