@@ -8,27 +8,9 @@ const _geist = Geist({ subsets: ["latin", "cyrillic"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "TG Code Studio | Digital Agency",
+  title: "TGCode",
   description:
     "We create websites and products you want to touch. Animations, interactivity, clean code.",
-  generator: "v0.app",
-  icons: {
-    icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
-    apple: "/apple-icon.png",
-  },
 };
 
 export const viewport: Viewport = {
