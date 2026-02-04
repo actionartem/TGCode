@@ -287,18 +287,18 @@ const translations: Record<Language, Translations> = {
       ],
     },
     contact: {
-      title: "Давайте сделаем вам проект!",
+      title: "Давайте реализуем вашу идею!",
       subtitle:
-        "Опишите идею как умеете. Хоть одним предложением. Хоть пусто (мы не обидимся).",
+        "Опишите что вы хотите, как умеете. Хоть одним предложением. (Но можете оставить поле пустым, мы не обидимся)",
       form: {
         name: "Имя",
         namePlaceholder: "Как к вам обращаться?",
         email: "Email",
-        emailPlaceholder: "куда ответить, если что",
+        emailPlaceholder: "Если вы хотите получить ответ на mail",
         telegram: "Telegram",
-        telegramPlaceholder: "например, @username",
+        telegramPlaceholder: "Например @username",
         phone: "Телефон",
-        phonePlaceholder: "если удобнее созвон",
+        phonePlaceholder: "Если удобнее звонок по телефону",
         message: "Коротко о задаче",
         messagePlaceholder:
           "Что нужно сделать? Для кого? Когда хочется запустить?",
