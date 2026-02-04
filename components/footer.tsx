@@ -17,9 +17,6 @@ export function Footer() {
             >
               TG Code<span className="text-accent">.</span>
             </a>
-            <p className="mt-2 text-sm text-muted-foreground max-w-md text-pretty">
-              {t.footer.tagline}
-            </p>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-6">
