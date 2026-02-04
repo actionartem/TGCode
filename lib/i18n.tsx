@@ -294,7 +294,7 @@ const translations: Record<Language, Translations> = {
         name: "Имя",
         namePlaceholder: "Как к вам обращаться?",
         email: "Email",
-        emailPlaceholder: "Если вы хотите получить ответ на mail",
+        emailPlaceholder: "Например yahochu@site.ru",
         telegram: "Telegram",
         telegramPlaceholder: "Например @username",
         phone: "Телефон",
