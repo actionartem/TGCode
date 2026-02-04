@@ -50,6 +50,19 @@ export function Hero() {
   const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const marqueeItems = [
+    "Разработка",
+    "Дизайн",
+    "UI/UX",
+    "Motion",
+    "Маркетинг",
+    "Стратегия",
+    "Брендинг",
+    "Product",
+    "Аналитика",
+    "Запуск",
+    "Growth",
+  ];
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -117,12 +130,28 @@ export function Hero() {
               {t.hero.cta}
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </MagneticButton>
-            <MagneticButton
-              href="#cases"
-              className="px-8 py-4 border border-border text-foreground font-medium rounded-full hover:border-accent hover:text-accent transition-colors gradient-border hover-scale"
-            >
-              {t.hero.ctaSecondary}
-            </MagneticButton>
+          </div>
+          <div className="mt-16 marquee">
+            <div className="marquee-track text-xs sm:text-sm md:text-base uppercase tracking-[0.3em] text-muted-foreground/80">
+              <div className="marquee-content">
+                {marqueeItems.map((item) => (
+                  <span key={item} className="inline-flex items-center gap-6">
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent/60" aria-hidden="true" />
+                    {item}
+                  </span>
+                ))}
+              </div>
+              <div className="marquee-content" aria-hidden="true">
+                {marqueeItems.map((item) => (
+                  <span key={`repeat-${item}`} className="inline-flex items-center gap-6">
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent/60" aria-hidden="true" />
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background to-transparent" />
           </div>
         </div>
       </div>
