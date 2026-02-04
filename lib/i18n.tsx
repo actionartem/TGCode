@@ -308,8 +308,7 @@ const translations: Record<Language, Translations> = {
       },
     },
     footer: {
-      tagline:
-        "Делаем интерфейсы, которые выглядят как продукт, а не как «очередной сайт».",
+      tagline: "",
     },
   },
   en: {

@@ -9,8 +9,7 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "TGCode",
-  description:
-    "Digital агентство по разработке любых продуктов",
+  description: "Студия разработки, реализовываем ваши идеи.",
   icons: {
     icon: "/favicon.svg",
   },
